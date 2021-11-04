@@ -14,7 +14,7 @@ def get_schema(engine, meta):
     print('these are your tables:')
     for t in meta.sorted_tables:
         print(t.name, end='; ')
-    print('no more tables')
+    print('\nno more tables')
 
 def create_all_tables(engine, meta, tables):
     """
@@ -115,23 +115,23 @@ def main():
     #get updated tables to metadata
     get_schema(engine, meta)
 
-    # list of tables to generate
-    gen_tables_names = ['film']
+    # # list of tables to generate
+    # gen_tables_names = ['film']
 
-    # retrieve table objects
-    tables = get_tables(engine, meta, gen_tables_names)
+    # # retrieve table objects
+    # tables = get_tables(engine, meta, gen_tables_names)
 
-    #create clone tables
-    new_engine = create_engine(generated_database_uri, echo=False) #turn true for help debugging
-    new_meta = MetaData(new_engine)
-    get_schema(new_engine, new_meta)
+    # #create clone tables
+    # new_engine = create_engine(generated_database_uri, echo=False) #turn true for help debugging
+    # new_meta = MetaData(new_engine)
+    # get_schema(new_engine, new_meta)
 
-    create_all_tables(new_engine, new_meta, tables)
+    # create_all_tables(new_engine, new_meta, tables)
 
-    get_schema(new_engine, new_meta)
+    # get_schema(new_engine, new_meta)
     
-    for t in new_meta.sorted_tables[:5]:
-        generate_data(engine, new_engine, t)
+    # for t in new_meta.sorted_tables[:5]:
+    #     generate_data(engine, new_engine, t)
 
 
 if __name__ == '__main__':
